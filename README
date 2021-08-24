@@ -7,16 +7,17 @@ It depends on open source PDF parsing and open source OCR, both in Python.
 ## Installation
 
 * Install conda
-* `cd` into the directory that contains this file
+* `cd` into the directory that contains this README file
 * Use this command to reproduce the environment and dependencies that the code needs to run 
 ```
-conda env create -f environment.yml
+conda env create -n pdfparse -f environment.yml
+conda activate pdfparse
 ```
 * type `make main` to run the main analysis, or open `Makefile` to manually run
 	the commands that it runs:
 ```
-python 04_ocrstep.py
 python 03_parsepdf.py
+python 04_ocrstep.py
 ```
 
 ## TODO
