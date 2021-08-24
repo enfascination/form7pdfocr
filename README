@@ -1,0 +1,42 @@
+This is custom PDF parsing code for structured PDFs.  It's the skeleton of a
+pipeline that can be adapted to any comparable PDF form, though this is made
+for extracting historical electric coop reporting.
+
+It depends on open source PDF parsing and open source OCR, both in Python.
+
+## Installation
+
+* Install conda
+* `cd` into the directory that contains this file
+* Use this command to reproduce the environment and dependencies that the code needs to run 
+```
+conda env create -f environment.yml
+```
+* type `make main` to run the main analysis, or open `Makefile` to manually run
+	the commands that it runs:
+```
+python 04_ocrstep.py
+python 03_parsepdf.py
+```
+
+## TODO
+* Get the coordinates for the rest of the fields on page 1
+  * Entries that aren't in the table at the headers and footers of each page
+		will probably end up in the CSV either in the file name or with their own
+		column
+	* when faced with info you're not sure you'll need, err on the side of
+		getting too much data.
+* Use those to generate the full csv for page 1
+* Make this work for many page 1's of more PDFs
+* Make this work for the other pages of the original single PDF
+* Make this work for all pages of more PDFs
+* Make this work for all pages of all PDFs
+* At this stage go for one csv per PDF
+* Follow with a datacleaning script that, for example: 
+  * Numbers are currently strings with commas. Take number columns and remove
+		the commas and convert them to actual numbers
+  * Make sure that empty cells are OCR'd as empty. One check will be if
+		characters are appearing in columns that should only contain numbers and
+		columns.
+* Start data analysis that will ultimately have data from all CSV's compressed 
+		down into one clean CSv for analysis
